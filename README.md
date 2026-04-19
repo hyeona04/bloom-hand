@@ -1,55 +1,69 @@
-# bloom-hand
+# 🌸 Bloom Hand
 
-# Bloom Hand
+## 📌 한 줄 소개
+손바닥을 인식하여 실시간으로 인터랙티브 애니메이션을 출력하는 웹 프로젝트
 
-손바닥을 인식하면 화면에 꽃 애니메이션이 나타나는 인터랙티브 웹 프로젝트입니다.
+---
 
-## Tech Stack
-- React
-- Vite
+## 🔗 배포 URL
+👉 https://frabjous-griffin-889d52.netlify.app/
+
+---
+
+## 🛠 Tech Stack
+
+- React (Vite)
 - TypeScript
 - Tailwind CSS
 - Framer Motion
 - MediaPipe Tasks Vision
 
-## Features
-- 손바닥 인식
-- 실시간 애니메이션
-- 카메라 기반 인터랙션
+---
 
-## Run
-```bash
-npm install
-npm run dev
+## ✨ 핵심 기능
 
-
-이 정도만 있어도 충분합니다.
+- 손바닥 인식 기반 인터랙션
+- 실시간 애니메이션 출력
+- 손 위치 기반 효과 발생
+- 손을 오래 펼치면 더 강한 효과 출력
+- 카메라 입력을 활용한 사용자 참여형 UX
 
 ---
 
-# 9. 지금 프로젝트 기준으로 올릴 파일
-당신 화면 기준으로는 이 정도가 올라갑니다.
+## 💡 구현하면서 어려웠던 점
 
-- `public/`
-- `src/`
-- `.gitignore`
-- `eslint.config.js`
-- `index.html`
-- `package-lock.json`
-- `package.json`
-- `README.md`
-- `tsconfig.app.json`
-- `tsconfig.json`
-- `tsconfig.node.json`
-- `vite.config.ts`
+### 1. 손 좌표와 화면 좌표 매칭
+MediaPipe에서 제공하는 정규화 좌표(0~1 범위)를  
+실제 화면(Canvas) 좌표로 변환하는 과정에서  
+정확한 위치에 애니메이션을 출력하기 어려움
 
-그리고
-- `node_modules/`는 제외
+### 2. 좌우 반전 문제
+카메라 입력과 사용자 인식 방향이 달라  
+손의 움직임과 화면 반응이 어긋나는 문제 발생
 
 ---
 
-# 10. 올리기 전에 추천하는 마지막 점검
-이거 해보세요.
+## 🔧 해결 방법
 
-```bash
-npm run build
+- 좌표를 Canvas 크기에 맞게 변환하여 위치 정확도 개선
+- `x → (1 - x)` 방식으로 좌우 반전 처리
+- 손 인식 threshold를 조정하여 안정적인 트리거 구현
+- 프레임 단위 업데이트로 자연스러운 애니메이션 흐름 유지
+
+---
+
+## 📈 추가 개선 아이디어
+
+- 모바일 환경 최적화
+- 다양한 인터랙션 모드 추가 (빛, 파티클 등)
+- 배경 및 테마 변경 기능
+- 손 제스처 확장 (주먹, 핀치, 스와이프 등)
+
+---
+
+## 📁 프로젝트 구조
+
+```text
+src/        # 주요 로직 및 컴포넌트
+public/     # 정적 파일
+docs/       # (선택) 이미지 및 문서
